@@ -185,7 +185,7 @@ def get_recommendation_view(request):
 @login_required(login_url="/login/farmer")
 def homei(request):
     title = 'Welcome: '.upper()
-    welcome =  'Welcome to the Anthrax Recommendation System, your trusted guide for informed decisions on anthrax prevention, diagnosis, and treatment. Explore personalized recommendations to safeguard your health and well-being,  click on your image below to get recommendation for anthraxs.'.upper()
+    welcome =  'Welcome to the Anthrax Recommendation System, your trusted guide for informed decisions on anthrax prevention, diagnosis, and treatment. Explore personalized recommendations to safeguard your health and well-being,  click on  below to get recommendation for anthrax.'.upper()
     context = {
         "title": title,
         "welcome": welcome

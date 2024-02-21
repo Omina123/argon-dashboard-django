@@ -13,7 +13,6 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
-  
 </style>
 
 {% block title %}   {% endblock title %}
@@ -25,36 +24,27 @@
   <!-- Mask -->
   <span class="mask bg-gradient-default opacity-8"></span>
   <!-- Header container -->
-
-
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white"> 
-
-          Hello {{ request.user.username|title }}  {{request.user.first_name|title}}. <p>{{ welcome }}</p> 
+        <h1 class="display-2 text-white" id="greeting">
+          
         </h1>
-              
-        <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+        <ul class="navbar-nav align-items-center ml-auto ml-md-0 ">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="/static/assets/img/theme/malasa.jpg">
-                </span>
-                <div class="media-body  ml-2  d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">
-                    {{request.user.role|title}} :: {{ request.user.username|title }}
-
+                <div class="media-body ml-2 d-none d-lg-block">
+                  <span class="mb-0 text-sm font-weight-bold">
+                    Hey {{ request.user.username|title }}...... HAPA BOSS!!!!.....
                   </span>
                 </div>
               </div>
             </a>
-            <div class="dropdown-menu  dropdown-menu-right ">
+            <div class="dropdown-menu dropdown-menu-right ">
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-           
               <a href="/get_reco" class="dropdown-item">
                 <i class="ni ni-paper-diploma"></i>
                 <span> RECOMMENDATIONS</span>
@@ -63,37 +53,52 @@
                 <i class="ni ni-ambulance"></i>
                 <span>History </span>
               </a>
-             
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'logout' %}" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="dropdown-item">
-                    <i class="ni ni-user-run text-red"></i>
-                    <span>Logout</span>
+                  <i class="ni ni-user-run text-red"></i>
+                  <span>Logout</span>
                 </button>
-            </form>
+              </form>
             </div>
           </li>
         </ul>
-        </div>
-      </div>      </div>
+      </div>
     </div>
   </div>
 </div>
 
-   
-
-  {% include "includes/footer.html" %}
+{% include "includes/footer.html" %}
 
 </div>
 
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
 {% block javascripts %}
 <script>
-  // JavaScript to change the background image
+  // JavaScript to update the greeting message based on the time of day
   window.onload = function() {
+    // Get the current hour
+    var hour = new Date().getHours();
+
+    // Define the greeting message based on the time of day
+    var greeting;
+    if (hour >= 5 && hour < 12) {
+      greeting = "Good morning";
+    } else if (hour >= 12 && hour < 18) {
+      greeting = "Good afternoon";
+    } else {
+      greeting = "Good evening";
+    }
+
+    // Get the greeting element
+    var greetingElement = document.getElementById("greeting");
+
+    // Update the greeting message
+    greetingElement.innerHTML = greeting + ", {{ request.user.username|title }}{{ request.user.first_name|title }}.<p>{{ welcome }}</p>";
+
+    // JavaScript to change the background image
     // Array of background image URLs
     var imageUrls = [
       "/static/assets/img/theme/goat.jpg",
@@ -123,9 +128,7 @@
     }
 
     // Change background image every 5 seconds (5000 milliseconds)
-    setInterval(changeBackground, 1000);
+    setInterval(changeBackground, 5000);
   };
 </script>
 {% endblock javascripts %}
-</bod>
-</html>

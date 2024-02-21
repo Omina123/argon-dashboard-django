@@ -1,5 +1,3 @@
-<!-- recommendation.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +12,7 @@
 
         body {
             background-image: url('static/assets/img/theme/goat.jpg');
-
+            background-size: cover;
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
@@ -32,8 +30,8 @@
             padding:30px;
             margin:12px;
             text-align:enter;
-            font-weight:border
-            display:inline-block
+            font-weight:border;
+            display:inline-block;
             font-size: 30px;
             margin-bottom: 20px;
             color:green;
@@ -100,12 +98,35 @@
     <div class="container">
         <div class="chat-container">
             <h1> Hi...... {{request.user.username|title}} Below is Your Recommendation For: {{ symptoms }} </h1>
-                <div class="assistant-message">{{ recommendation }}</div>    
+            <div class="assistant-message">{{ recommendation }}</div>    
+        </div>
         <div>
-        <a class="back-button" href="{% url 'get_reco' %}">Go Back</a>
+            <a class="back-button" href="{% url 'get_reco' %}">Go Back</a>
+        </div>
     </div>
 
     <script>
+        // Array of background image URLs
+        var bgImages = [
+            '/static/assets/img/theme/goat.jpg',
+            '/static/assets/img/theme/go.jpg',
+            '/static/assets/img/theme/gk.jpg',
+            '/static/assets/img/theme/gc.jpg'
+            // Add more image URLs here as needed
+        ];
+
+        // Function to change background image
+        function changeBackgroundImage() {
+            var randomIndex = Math.floor(Math.random() * bgImages.length);
+            document.body.style.backgroundImage = 'url(' + bgImages[randomIndex] + ')';
+        }
+
+        // Call the function initially
+        changeBackgroundImage();
+
+        // Set interval to change background image every 10 seconds (adjust as needed)
+        setInterval(changeBackgroundImage, 10000);
+
         // You can add more sophisticated typing logic if needed
         setTimeout(function () {
             var assistantMessages = document.querySelectorAll('.assistant-message');
@@ -114,5 +135,5 @@
             });
         }, 100000);  // Adjust the delay based on your preference
     </script>
-
-
+</body>
+</html>
