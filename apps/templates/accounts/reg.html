@@ -1,0 +1,153 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Register {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+  <style>
+    /* Custom styles for the form */
+    .card {
+      border-radius: 10px;
+    }
+
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: none;
+    }
+
+    .card-body {
+      background-color: #fff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .text-muted {
+      color: #6c757d;
+    }
+
+    input[type="checkbox"].custom-control-input:checked~.custom-control-label::before {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    input[type="checkbox"].custom-control-input:focus~.custom-control-label::before {
+      box-shadow: 0 0 0 1px #007bff, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    input[type="checkbox"].custom-control-input:checked:focus~.custom-control-label::before {
+      box-shadow: 0 0 0 1px #007bff, 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+    }
+
+    /* Loading spinner styles */
+    #loading-spinner {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 123, 255, 0.3);
+      border-radius: 50%;
+      border-top: 8px solid #007BFF;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <!-- Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+        
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-5">
+              <div class="text-muted text-center mt-2 mb-4">
+                Sign UP
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+
+                {% if msg %}
+                  <small>{{ msg | safe }}</small>
+                {% else %}
+                  Add your credentials
+                {% endif %}  
+              
+              </div>
+
+              {% if not success %}
+
+                <form method="POST" id="register-form">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+
+                  <div class="row my-4">
+                    <div class="col-12">
+                      <div class="custom-control custom-control-alternative custom-checkbox">
+                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                        <label class="custom-control-label" for="customCheckRegister">
+                          <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <!-- Loading spinner -->
+                    <div id="loading-spinner" class="spinner"></div>
+                    <!-- End loading spinner -->
+                    <button type="submit" class="btn btn-primary mt-4" onclick="showLoading()">Create account</button>
+                  </div>
+                </form>
+
+              {% endif %}  
+  
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-3">
+          <a href="{% url 'login_view' %}" class="text-light"><small>Login</small></a>
+        </div>
+        <div class="col-3 text-right">
+          <a href="https://appseed.us/support" class="text-light"><small>Get Support</small></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script>
+  function showLoading() {
+    document.getElementById('loading-spinner').style.display = 'block';
+  }
+</script>
+{% endblock javascripts %}

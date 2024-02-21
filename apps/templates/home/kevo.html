@@ -1,0 +1,14 @@
+<div class="display_table">
+    <table class='table'>
+        <thead>
+            <tr>
+                <th> job</th>
+                <tr>
+        </thead>
+{% for instance in queryset %}
+<tr>
+    <td> {{ instance.recommendation}}
+    <a class="btn btn-sm btn-success" href="{% url 'hire' instance.id %}"> CASE Details</a>
+
+</tr>
+{% endfor%}

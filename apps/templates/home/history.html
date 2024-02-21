@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Define your CSS rules here */
+        .display_table {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color:white ;
+            margin: 10px;
+            padding: 15px
+            
+            
+        }
+        body {
+            background-image: url('static/media/goat.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+          }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .table td {
+            background-color: #f9f9f9;
+        }
+
+        
+        /* Style for DELETE button */
+        .btn-danger, .btn-edit, .btn-success {
+            display: inline-block;
+            margin-right: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none; /* Remove underline for anchor tag */
+            cursor: pointer;
+        }
+        .btn-success{
+            background-color:green;
+            color:fff;
+            
+        }
+        .btn-success:hover{
+            background-color:solid green;
+        }
+
+        .btn-danger {
+            background-color: #ff6347; /* Red color for delete */
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff0000;
+        }
+
+        .btn-edit {
+            background-color: #17a2b8; /* Blue color for edit */
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background-color: #138496;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a.back-button {
+            display: block;
+            text-align: center;
+            margin-top: 28px;
+            text-decoration:none;
+            color: black;
+            font-weight: bold;
+            font-size: 19px
+            cursor: pointer;
+        }
+        a.back-button:hover{
+            color:orange;
+        }
+    </style>
+</head>
+<body>
+    <h1> {{ title }}</h1>
+    {{message}}
+
+    <div class="display_table">
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>NUMBER OF RECOMMENDATION</th>
+                    <th> Observerd Symptom</th>
+                    <th>RECOMMENDATION</th>
+                    <th>name</th>
+                    <th>ACTIONS</th>
+                    
+                
+                </tr>
+            </thead>
+           
+          
+            {% for instance in queryset %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ instance.symptoms }}</td>
+                <td>{{ instance.recommendation }}</td>
+                <td>{{ instance.farmer}}</td>
+
+          
+                <td class="dropdown">
+                    <button class="btn btn-edit">Actions</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="btn btn-edit">Edit</a>
+                        <a href="{% url 'delete' instance.id %}" class="btn btn-danger">Delete</a>
+                        
+
+
+                    </div>
+                </td>
+            </tr>
+            
+            {% endfor %}
+            <a class="back-button" href="{% url 'homei' %}"><< Go Back</a>
+        </table>
+    </div>
+    
+</body>
+</html>

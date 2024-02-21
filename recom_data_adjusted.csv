@@ -1,0 +1,9 @@
+symptoms,recommendation,diagnosis
+sudden death,Avoid grazing your goats in areas where anthrax has been known to occur. Dispose of dead animals properly. Add more information to recommendations to increase file size.,1
+difficulty in breathing,Avoid grazing your goats in areas where anthrax has been known to occur. Add more information to recommendations to increase file size.,1
+high fever,It is crucial to ensure the health and safety of your goats by considering anthrax vaccination. Add more information to recommendations to increase file size.,1
+loss of appetite,Vaccinate your goats against anthrax. Regular veterinary check-ups are essential. Add more information to recommendations to increase file size.,1
+swelling,Vaccinate your goats against anthrax. Swelling in goats can be indicative of various health issues. Add more information to recommendations to increase file size.,1
+weakness,Wear gloves and other protective gear when handling dead animals. Weakness in goats can be a symptom of various underlying issues. Add more information to recommendations to increase file size.,1
+nose discharge and mouth,Wear gloves and other protective gear when handling dead animals. Nose discharge and mouth-related issues in goats can be indicative of respiratory infections. Add more information to recommendations to increase file size.,1
+no symptom,"It is good that your goat has no visible symptoms. However, it's essential to remain vigilant and regularly monitor your goats. Add more information to recommendations to increase file size.",0

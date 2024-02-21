@@ -1,0 +1,116 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  <!-- Specific CSS goes HERE -->
+  <style>
+    /* Custom styles for the form container */
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Custom styles for the form inputs */
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Custom styles for the submit button */
+    .form-submit {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-submit:hover {
+      background-color: #0056b3;
+    }
+
+    /* Custom styles for the back button */
+    .back-button {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .back-button:hover {
+      text-decoration: underline;
+    }
+
+    /* Custom styles for other elements */
+    .text-muted {
+      color: #6c757d;
+    }
+
+    input[type="checkbox"].custom-control-input:checked~.custom-control-label::before {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    input[type="checkbox"].custom-control-input:focus~.custom-control-label::before {
+      box-shadow: 0 0 0 1px #007bff, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    input[type="checkbox"].custom-control-input:checked:focus~.custom-control-label::before {
+      box-shadow: 0 0 0 1px #007bff, 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+          <div class="text-muted text-center mt-2 mb-3">
+            PROVIDE EXPERIENCED SYMPTOMS BELOW
+          </div>
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+          <form id="symptomsForm" method="post" action="{% url 'get_reco' %}" class="form-container">
+            {% csrf_token %}
+            <h1 class="mb-4"> HI.. {{request.user.username}} {{request.user.first_name}}</h1>
+            <label for="symptoms">Provide experienced Symptoms:</label>
+            <input type="text" id="symptomsInput" name="symptoms" class="form-input" required>
+            <button type="submit" onclick="showLoading()" class="form-submit">Get Recommendation</button>
+            <a class="back-button" href="{% url 'homei' %}">Go Back</a>
+            <div id="loading-spinner">
+              <div class="spinner"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<!-- Specific JS goes HERE -->
+<script>
+  function showLoading() {
+    document.getElementById('loading-spinner').style.display = 'block';
+  }
+</script>
+{% endblock javascripts %}

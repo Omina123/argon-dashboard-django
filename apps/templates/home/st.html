@@ -1,0 +1,131 @@
+{% extends 'layouts/base.html' %}
+<style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  
+</style>
+
+{% block title %}   {% endblock title %}
+
+{% block content %}
+
+<div id="headerSection" class="header pb-6 d-flex align-items-center" 
+     style="min-height: 500px; background-image: url(/static/assets/img/theme/goat.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+
+
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"> 
+
+          Hello {{ request.user.username|title }}  {{request.user.first_name|title}}. <p>{{ welcome }}</p> 
+        </h1>
+              
+        <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="/static/assets/img/theme/malasa.jpg">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">
+                    {{request.user.role|title}} :: {{ request.user.username|title }}
+
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-menu  dropdown-menu-right ">
+              <div class="dropdown-header noti-title">
+                <h6 class="text-overflow m-0">Welcome!</h6>
+              </div>
+           
+              <a href="/get_reco" class="dropdown-item">
+                <i class="ni ni-paper-diploma"></i>
+                <span> RECOMMENDATIONS</span>
+              </a>
+              <a href="/history" class="dropdown-item">
+                <i class="ni ni-ambulance"></i>
+                <span>History </span>
+              </a>
+             
+              <div class="dropdown-divider"></div>
+              <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                    <i class="ni ni-user-run text-red"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+            </div>
+          </li>
+        </ul>
+        </div>
+      </div>      </div>
+    </div>
+  </div>
+</div>
+
+   
+
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script>
+  // JavaScript to change the background image
+  window.onload = function() {
+    // Array of background image URLs
+    var imageUrls = [
+      "/static/assets/img/theme/goat.jpg",
+      "/static/assets/img/theme/gb.jpg",
+      "/static/assets/img/theme/gg.jpg",
+      "/static/assets/img/theme/gk.jpg",
+      "/static/assets/img/theme/go.jpg",
+      "/static/assets/img/theme/gc.jpg",
+      // Add more image URLs here as needed
+    ];
+
+    // Get the header section element
+    var headerSection = document.getElementById("headerSection");
+
+    var index = 0; // Initialize index for cycling through imageUrls
+
+    // Function to change background image
+    function changeBackground() {
+      // Get the next image URL from the array
+      var imageUrl = imageUrls[index];
+
+      // Update the background image URL
+      headerSection.style.backgroundImage = "url(" + imageUrl + ")";
+
+      // Increment index for the next image
+      index = (index + 1) % imageUrls.length;
+    }
+
+    // Change background image every 5 seconds (5000 milliseconds)
+    setInterval(changeBackground, 1000);
+  };
+</script>
+{% endblock javascripts %}
+</bod>
+</html>

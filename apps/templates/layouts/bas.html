@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-argon">
+  
+  <title>
+    omina - {% block title %} kevin {% endblock %} | malasa
+  </title>
+
+  <link rel="icon" href="/static/assets/img/brand/favicon.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/static/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/static/assets/css/argon.css?v=1.2.0" type="text/css">
+
+  <!-- Typed.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <!-- Specific CSS goes HERE -->
+  <style>
+    /* Add a CSS animation for the text */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Apply the animation to the 'animated-text' class */
+    .animated-text {
+      animation: fadeIn 20s ease-in-out; /* Adjust the duration and timing function as needed */
+    }
+
+    /* Add CSS for background sliding effect */
+    .header {
+      background-size: cover;
+      background-position: center;
+      animation: slideBackground 20s infinite linear;
+    }
+
+    @keyframes slideBackground {
+      0% {
+        background-image: url('/static/assets/img/theme/malasa.jpg');
+      }
+      25% {
+        background-image: url('/static/assets/img/theme/kevin.jpg');
+      }
+      50% {
+        background-image: url('/static/assets/img/theme/malasa.jpg');
+      }
+      75% {
+        background-image: url('/static/assets/img/theme/kevin.jpg');
+      }
+      100% {
+        background-image: url('/static/assets/img/theme/malasa.jpg');
+      }
+    }
+  </style>
+
+  {% block stylesheets %}{% endblock stylesheets %}
+</head>
+
+<body class="bg-default">
+
+  <div class="main-content">
+
+    {% include "includes/homa_nav.html" %}
+   
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6"><br><br><br>
+              <h1 class="text-white">
+                <span class="avatar avatar-lg rounded-circle">
+                  <!-- Increased width and height here -->
+                  <img alt="Image placeholder" src="/static/assets/img/theme/malasa.jpg" style="width: 50px; height: 50px;">
+                </span>
+                <a target="_blank" class="text-white" href="https://appseed.us/admin-dashboards/django-dashboard-argon">Malasa kevin omina </a>
+              </h1>
+              <p class="text-lead text-light animated-text">
+                <a target="_blank" class="text-white" href="https://appseed.us">  
+                  Is a computer science student
+                   Specializing in Software development specifically in Android applications and web-based systems
+                   He is 22 years old
+                   A nature enthusiast, known for being calm and focused in most occasions.
+                   A devoted Christian who embraces the simplicity of black and white aesthetics.
+                </a>
+                <span id="typed-output"></span> <!-- Add an empty span for Typed.js to fill in -->
+              </p>
+              <img alt="Image placeholder" src="/static/assets/img/theme/kevin.jpg" style="width: 150px; height: 150px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    {% block content %}
+    {% endblock content %}
+
+    {% include "includes/footer-fullscreen.html" %}
+
+  </div>
+    
+  {% include "includes/scripts.html" %}
+
+  <!-- Specific JS goes HERE -->
+  <script>
+    // Initialize Typed.js
+    var options = {
+      strings: [
+        "Is a computer science student",
+        "Specializing in Software development specifically in Android applications and web-based systems",
+        "He is 22 years old",
+        "A nature enthusiast, known for being calm and focused in most occasions",
+        "A devoted Christian who embraces the simplicity of black and white aesthetics"
+        
+      ],
+      typeSpeed: 100, // Adjust the typing speed as needed
+      backSpeed: 50, // Adjust the backspacing speed as needed
+      loop: true, // Set to true to loop through the strings
+    };
+
+    var typed = new Typed("#typed-output", options);
+  </script>
+
+</body>
+
+</html>

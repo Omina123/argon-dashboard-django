@@ -1,0 +1,87 @@
+{% load crispy_forms_tags %}
+<html>
+<style>
+    body {
+        background-image: url('static/media/goat.jpg');
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%; /* Adjust the width as needed */
+        max-width: 400px; /* Set a max-width to prevent it from getting too wide */
+        margin: auto; /* Center the form */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 6px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    p {
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    a { 
+        margin-top: 16px;
+        padding: 0 3.5rem;
+        text-align: flex;
+        text-decoration: none;
+        font-size: 12px;
+        font-family: Arial;
+        color: blue;
+    }
+
+    a:hover {
+        color: orange;
+    }
+</style>
+    <body>
+
+    <form method="post " action="{% url 'fogot_password' %}">
+        <h2> reset Password</h2>
+        <p> Enter your Email to get Password</p2>
+        {% csrf_token %}
+       {{form|crispy}}     
+        <button type="submit" class="btn btn-primary">reset Password</button>
+    </form> </body>
+    </html>

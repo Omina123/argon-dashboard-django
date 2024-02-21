@@ -1,0 +1,118 @@
+<!-- recommendation.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Recommendation Result</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('static/assets/img/theme/goat.jpg');
+
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+      
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            padding:30px;
+            margin:12px;
+            text-align:enter;
+            font-weight:border
+            display:inline-block
+            font-size: 30px;
+            margin-bottom: 20px;
+            color:green;
+            padding-top: 30px;
+        }
+
+        .chat-container {
+            margin-bottom: 20px;
+        }
+
+        .assistant-message {
+            background-color: #f7f7f7;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: 2px solid transparent;
+            animation: typing 5s steps(20, end), blink-caret 0.5s step-end infinite;
+
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #000;
+            }
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <br>
+    <div class="container">
+        <div class="chat-container">
+            <h1> Hi...... {{request.user.username|title}} Below is Your Recommendation For: {{ symptoms }} </h1>
+                <div class="assistant-message">{{ recommendation }}</div>    
+        <div>
+        <a class="back-button" href="{% url 'get_reco' %}">Go Back</a>
+    </div>
+
+    <script>
+        // You can add more sophisticated typing logic if needed
+        setTimeout(function () {
+            var assistantMessages = document.querySelectorAll('.assistant-message');
+            assistantMessages.forEach(function (message) {
+                message.innerHTML = message.textContent;
+            });
+        }, 100000);  // Adjust the delay based on your preference
+    </script>
+
+
