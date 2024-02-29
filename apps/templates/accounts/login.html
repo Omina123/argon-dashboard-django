@@ -15,7 +15,7 @@
         margin: 0;
         padding: 0;
         justify-content: center;
-        background-color: #f4f4f4;  
+        background-color:blue;  
         display: flex;
         text-align: center;
         min-height: 100vh;
@@ -88,9 +88,9 @@
 
 <body>
     <form method="post" action="{% url 'login_view' %}" class="mt-5">
-        {% if msg %} 
+        
             <p>{{ msg }}</p>
-        {% endif %}
+        
         <h2>Login</h2>
         {% csrf_token %}
         {{ form|crispy }}

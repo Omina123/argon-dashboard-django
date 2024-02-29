@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Background Image</title>
+<title>omina kevin</title>
 <!-- Include the Typed.js library -->
 <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
 <style>
@@ -23,8 +23,8 @@
   .container {
     flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
     color: #fff;
   }
@@ -34,6 +34,7 @@
     padding: 20px;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
+    margin: 0 10px 20px; /* Added margin-bottom for separation */
   }
 
   h1 {
@@ -86,7 +87,7 @@
     display: inline-block;
   }
   .navbar a:active{
-    background-color: blue;
+    background-color: white;
   }
 
   .navbar a:hover {
@@ -102,17 +103,66 @@
 
   /* Style for the footer */
   footer {
-    background-color: purple;
+    background-color: black;
     color: white;
+    padding: 20px 0;
     text-align: center;
-    padding: 10px 0;
+  }
+
+  footer a{
+    text-decoration: none;
+    color:white;
+    margin-left: 0px;
+  }
+
+  .footer-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .footer-menu div {
+    flex: 1;
+    margin: 0 10px;
+  }
+
+  .footer-menu p {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-menu ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .footer-menu ul li:last-child {
+    margin-right: 0;
   }
 
   /* Transparent card style */
   .card {
     background-color: rgba(125, 055, 155, 0.2);
-    padding: 20px;
-    border-radius: 1px;
+    padding: 10px;
+    margin-left: 70px;
+  }
+
+  /* Floating card style for the paragraph */
+  .card-paragraph {
+    background-color: rgba(25, 25, 255, 0.8); /* Adjust opacity as needed */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    max-width: 600px; /* Limit width for better readability */
+    margin: auto; /* Center the card horizontally */
+    position: relative; /* Enable positioning */
+    top: -1px; /* Adjust as needed to float it above */
   }
 </style>
 </head>
@@ -122,9 +172,9 @@
 <div class="navbar">
   <a class="active" href="">Home</a>
   <a href="about">About</a>
-  <a href="#">Services</a>
+  <a href="contact.html">Services</a>
   <a href="#">Contact</a>
-  <a href="register_user">Register</a>
+  <a href="{% url 'register_user'%}">Follow</a>
   <div class="dropdown">
     <a href="#">Profile</a>
     <div class="dropdown-content">
@@ -139,44 +189,82 @@
 <div class="container">
   <div class="content">
     <div class="card">
-      <p id="typed-output" class="text"></p>
+      <p id="typed-output1" class="text card-paragraph"></p>
     </div>
+  </div>
+</div>
+<div class="content">
+  <div class="card">
+    <p id="typed-output2" class="text card-paragraph"> Specializing in software development, particularly in Android applications and web-based systems, I bring forth a wealth of experience and expertise honed through years of dedicated practice and continuous learning. With a keen eye for detail and a passion for innovation, <br>I strive to create robust, user-friendly solutions that meet the unique needs of clients and users alike. My journey in software development has equipped me with a deep understanding of industry best practices, emerging technologies, and the intricacies of the digital landscape. From designing intuitive user interfaces to implementing scalable backend architectures, I am committed to delivering cutting-edge solutions that drive success and exceed expectations</p>
+  </div>
+</div>
+<div class="content">
+  <div class="card">
+    <p id="typed-output4" class="text card-paragraph">"Anthrax Recommendation Project offers personalized guidance for anthrax outbreaks. Access it on your site by integrating the provided API. Follow the manual for seamless implementation, empowering healthcare professionals with tailored strategies for prevention, treatment, and containment. click on the Follow button on the menu to learn more"</p>
   </div>
 </div>
 
 <!-- Footer -->
-<footer>
-  &copy;kevin2000@gmail.com. All creative sites.
+<footer class="py-5">
+  <div class="container">
+    <div class="footer-menu">
+      <div>
+        <p>Profile</p>
+        <ul>
+          <li><a href="{% url 'register_user'%}">Register</a></li>
+          <li><a href="{% url 'login_view'%}">Login</a></li>
+        
+        </ul>
+      </div>
+      <div>
+        <p>More</p>
+        <ul>
+          <li><a href="#">More Learning</a></li><br>
+          <li><a href="about">About Us</a></li><br>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p>Quick link </p>
+        <ul>
+          <li><a href="{%url 'homei'%}">My Projects</a></li><br>
+          <li><a href="#">My life</a></li><br>
+          <li><a href="#">My FQS</a></li>
+        </ul>
+      </div>
+    </div>
+  </div><br> <hr>
+  <div class="col-xl-6">
+        <div class="text-center text-xl-right text-muted">
+           &copy; <a target="_blank" href="https://bit.ly/3fKQZaL">Creative-Tim</a> 
+           - coded by <a target="_blank" href="https://appseed.us">malasa kevin omina</a>
+        </div>
 </footer>
 
 <script>
   // Array of background images and corresponding texts
   const imagesAndTexts = [
   { image: '/static/assets/img/theme/p.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
+  { image: '/static/assets/img/theme/ma.jpg', text: "As a dedicated computer science student, I am deeply immersed in the ever-evolving realm of technology, constantly seeking to broaden my knowledge and sharpen my skills in this dynamic field. With a fervent passion for problem-solving and innovation, I approach each coding challenge with enthusiasm and determination, eager to unravel its complexities and devise elegant solutions. From mastering algorithms and data structures to delving into the intricacies of software development and system architecture, I embrace the diverse facets of computer science with zeal and curiosity. Beyond the confines of the classroom, I am actively engaged in collaborative projects and extracurricular activities that allow me to apply theoretical concepts to real-world scenarios, honing my abilities as a programmer and critical thinker. Through hands-on experience and continuous learning, I aspire to make meaningful contributions to the ever-expanding landscape of technology, shaping the future of computing with creativity, ingenuity, and a relentless pursuit of excellence." },
+  { image: '/static/assets/img/theme/kevin.jpg', text: "At the age of 22, I find myself at a pivotal juncture, teeming with youthful enthusiasm, curiosity, and boundless potential. As I stand on the threshold of adulthood, each day presents a new opportunity for growth, learning, and self-discovery. With a zest for life and a hunger for knowledge, I eagerly embrace the challenges and adventures that lie ahead, fueled by a deep-seated ambition to carve out my path in the world. This age marks a time of transition, where I navigate the complexities of adulthood while cherishing the simplicity and freedom of youth, savoring every moment as I embark on this exhilarating journey called life." },
+  { image: '/static/assets/img/theme/cisco.png', text: "Specializing in software development, particularly in Android applications and web-based systems, I bring forth a wealth of experience and expertise honed through years of dedicated practice and continuous learning. With a keen eye for detail and a passion for innovation, I strive to create robust, user-friendly solutions that meet the unique needs of clients and users alike. My journey in software development has equipped me with a deep understanding of industry best practices, emerging technologies, and the intricacies of the digital landscape. From designing intuitive user interfaces to implementing scalable backend architectures, I am committed to delivering cutting-edge solutions that drive success and exceed expectations." },
+  { image: '/static/assets/img/theme/kv.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
+  { image: '/static/assets/img/theme/r.jpg', text: "Specializing in software development, particularly in Android applications and web-based systems, I bring forth a wealth of experience and expertise honed through years of dedicated practice and continuous learning. With a keen eye for detail and a passion for innovation, I strive to create robust, user-friendly solutions that meet the unique needs of clients and users alike. My journey in software development has equipped me with a deep understanding of industry best practices, emerging technologies, and the intricacies of the digital landscape. From designing intuitive user interfaces to implementing scalable backend architectures, I am committed to delivering cutting-edge solutions that drive success and exceed expectations." },
+  { image: '/static/assets/img/theme/p.jpg', text: "As a devoted Christian, my faith serves as the guiding light in both my personal and professional life. Rooted in principles of love, compassion, and integrity, I strive to embody these values in all aspects of my being. Embracing the simplicity of black and white aesthetics reflects my appreciation for clarity, purity, and authenticity. In design and expression, I find beauty in the stark contrast and timeless elegance of monochrome palettes, reflecting a sense of balance and harmony. This aesthetic choice extends beyond visual preferences, symbolizing a commitment to simplicity, honesty, and transparency in thought, action, and communication, resonating deeply with my Christian values and beliefs." },
+  { image: '/static/assets/img/theme/kevin.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
+  { image: '/static/assets/img/theme/r.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
+  { image: '/static/assets/img/theme/p.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." }
+];
 
-    { image: '/static/assets/img/theme/goat.jpg', text: "As a dedicated computer science student, I am deeply immersed in the ever-evolving realm of technology, constantly seeking to broaden my knowledge and sharpen my skills in this dynamic field. With a fervent passion for problem-solving and innovation, I approach each coding challenge with enthusiasm and determination, eager to unravel its complexities and devise elegant solutions. From mastering algorithms and data structures to delving into the intricacies of software development and system architecture, I embrace the diverse facets of computer science with zeal and curiosity. Beyond the confines of the classroom, I am actively engaged in collaborative projects and extracurricular activities that allow me to apply theoretical concepts to real-world scenarios, honing my abilities as a programmer and critical thinker. Through hands-on experience and continuous learning, I aspire to make meaningful contributions to the ever-expanding landscape of technology, shaping the future of computing with creativity, ingenuity, and a relentless pursuit of excellence." },
-    { image: '/static/assets/img/theme/sketch.jpg', text: "At the age of 22, I find myself at a pivotal juncture, teeming with youthful enthusiasm, curiosity, and boundless potential. As I stand on the threshold of adulthood, each day presents a new opportunity for growth, learning, and self-discovery. With a zest for life and a hunger for knowledge, I eagerly embrace the challenges and adventures that lie ahead, fueled by a deep-seated ambition to carve out my path in the world. This age marks a time of transition, where I navigate the complexities of adulthood while cherishing the simplicity and freedom of youth, savoring every moment as I embark on this exhilarating journey called life." },
-    { image: '/static/assets/img/theme/malasa.jpg', text: "Specializing in software development, particularly in Android applications and web-based systems, I bring forth a wealth of experience and expertise honed through years of dedicated practice and continuous learning. With a keen eye for detail and a passion for innovation, I strive to create robust, user-friendly solutions that meet the unique needs of clients and users alike. My journey in software development has equipped me with a deep understanding of industry best practices, emerging technologies, and the intricacies of the digital landscape. From designing intuitive user interfaces to implementing scalable backend architectures, I am committed to delivering cutting-edge solutions that drive success and exceed expectations." },
-    { image: '/static/assets/img/theme/profile-cover.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
-    { image: '/static/assets/img/theme/team-1.jpg', text: "Specializing in software development, particularly in Android applications and web-based systems, I bring forth a wealth of experience and expertise honed through years of dedicated practice and continuous learning. With a keen eye for detail and a passion for innovation, I strive to create robust, user-friendly solutions that meet the unique needs of clients and users alike. My journey in software development has equipped me with a deep understanding of industry best practices, emerging technologies, and the intricacies of the digital landscape. From designing intuitive user interfaces to implementing scalable backend architectures, I am committed to delivering cutting-edge solutions that drive success and exceed expectations." },
-    { image: '/static/assets/img/theme/team-2.jpg', text: "As a devoted Christian, my faith serves as the guiding light in both my personal and professional life. Rooted in principles of love, compassion, and integrity, I strive to embody these values in all aspects of my being. Embracing the simplicity of black and white aesthetics reflects my appreciation for clarity, purity, and authenticity. In design and expression, I find beauty in the stark contrast and timeless elegance of monochrome palettes, reflecting a sense of balance and harmony. This aesthetic choice extends beyond visual preferences, symbolizing a commitment to simplicity, honesty, and transparency in thought, action, and communication, resonating deeply with my Christian values and beliefs." },
-    { image: '/static/assets/img/theme/team-3.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
-    { image: '/static/assets/img/theme/r.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." },
-    { image: '/static/assets/img/theme/p.jpg', text: "As a fervent admirer of nature, I am constantly drawn to the serene beauty and profound tranquility it offers. Whether wandering through lush forests, gazing at majestic mountains, or basking in the gentle caress of ocean waves, I find solace and inspiration in the natural world. My passion for nature extends beyond mere appreciation; it permeates my being, shaping my outlook on life and instilling in me a deep sense of reverence for the earth and its wonders.Known for my calm demeanor and unwavering focus, I navigate life's myriad challenges with poise and determination. Even in the face of adversity, I remain steadfast and composed, channeling inner strength and resilience to overcome obstacles and achieve my goals. This sense of tranquility and clarity of mind allows me to approach each task with clarity and purpose, fostering productivity and success in all endeavors.In the hustle and bustle of modern life, I find refuge in nature's embrace, seeking solace amidst its timeless beauty and unwavering serenity. Whether taking leisurely strolls through verdant meadows or simply basking in the warm glow of the sun, I find joy and fulfillment in the simple pleasures that nature provides. With each passing moment, I am reminded of the profound interconnectedness of all living things and the boundless wonders that surround us, inspiring me to cherish and protect our precious planet for generations to come." }
-  ];
-
-  // Function to set random background image and its associated text
-  function setBackgroundImageAndText() {
+ function setBackgroundImageAndText() {
     const randomIndex = Math.floor(Math.random() * imagesAndTexts.length);
     const { image, text } = imagesAndTexts[randomIndex];
     document.body.style.backgroundImage = `url('${image}')`;
-    document.getElementById('typed-output').textContent = text;
-  }
+    document.getElementById('typed-output1').textContent = text;
+}
 
-  // Change background image and text every 5 seconds
-  setBackgroundImageAndText(); // Initial background image and text
+  setBackgroundImageAndText();
   setInterval(setBackgroundImageAndText, 10000);
-
 </script>
 
 </body>

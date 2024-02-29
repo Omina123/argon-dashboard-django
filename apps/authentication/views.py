@@ -18,49 +18,8 @@ from .forms import*
 from apps.home.views import*
 import time
 
-# def login_view(request):
-#     if request.method == 'POST':
-#         email = request.POST['email']
-#         password = request.POST['password']
-#         user = authenticate(request, email=email, password=password)
-#         if user is not None:
-#             login(request, user)
-#             if user.role == 'student':
-#                 return redirect('student_dashboard')
-#             elif user.role == 'lecturer':
-#                 return redirect('lecturer_dashboard')
-#             elif user.role == 'dean':
-#                 return redirect('dean_dashboard')
-#             elif user.role == 'admin':
-#                 return redirect('admin_dashboard')
-#             elif user.role == 'hr':
-#                 return redirect('hr_dashboard')
-#         else:
-#             # Handle invalid login
-#             return render(request, 'accounts/login.html', {'error': 'Invalid login credentials'})
-#     return render(request, 'accounts/login.html')
 
-# def login_view(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)  # Initialize the login form with POST data
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user = authenticate(request, username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 # Redirect based on the user's role
-#                 if user.role == 'student':
-#                     return redirect('/index')
-#                 # Add more role-specific redirections here
-#             else:
-#                 # Handle invalid login
-#                 return render(request, 'accounts/login.html', {'error': 'Invalid login credentials'})
-#     else:
-#         form = LoginForm()  # Create an instance of the login form
 
-    # return render(request, 'accounts/login.html', {'form': form})
-    
 @login_required(login_url="/login/")
 def index(request):
     context = {'segment': 'index'}
@@ -104,26 +63,6 @@ import joblib
 # Load the trained model
 model = joblib.load('omina_model.joblib')
 # def omina(request):
-#     mess= "Ensure that your name is on the list above before your continue".upper()
-#     if request.method == 'POST':
-#         form = ApproveUserForm(request.POST)
-#         farmer= request.user
-#         if farmer:
-#             if form.is_valid():
-#                 form.save
-       
-#                 time.sleep(10)
-
-#                 return redirect('get_reco')
-#         else:
-#             mess= "user not approved please register"
-#     else:
-#         form = ApproveUserForm()
-#     return render(request, 'home/approve.html', {'form': form, 'mess':mess})
-# from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .models import AnthraxSymptom
-from .forms import SymptomForm
 
 @login_required
 # views.py
@@ -136,6 +75,7 @@ def get_reco(request):
 
             # Get the currently logged-in user and set it as the farmer
             farmer = request.user
+            
 
             # Use the trained model to make a recommendation
             symptoms_data = pd.DataFrame({'symptoms': [symptoms], 'diagnosis': [1]})  # Assuming diagnosis is 1, you may need to adjust this
@@ -182,7 +122,7 @@ def get_recommendation_view(request):
         return render(request, 'user.html', {'symptom': symptom, 'recommendation': recommendation})
     else:
         return render(request, 'symptom_selector.html')
-@login_required(login_url="/login/farmer")
+# @login_required(login_url="/login/farmer")
 def homei(request):
     title = 'Welcome: '.upper()
     welcome =  'Welcome to the Anthrax Recommendation System, your trusted guide for informed decisions on anthrax prevention, diagnosis, and treatment. Explore personalized recommendations to safeguard your health and well-being,  click on  below to get recommendation for anthrax.'.upper()
@@ -221,14 +161,15 @@ def enter(request):
     return render(request, 'home/ko.html', {'form': form})
 def login_view(request):
     form = LoginForm(request.POST or None)
-    msg = None
+    msg = ""
 
     if request.method == "POST":
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
 
-            logger.debug(f"Received login attempt for username: {username}")
+            
+            print(logger.debug(f"Received login attempt for username: {username}"))
 
             user = authenticate(username=username, password=password)
             if user is not None:
@@ -237,11 +178,13 @@ def login_view(request):
                 if user.role == 'farmer':
                     time.sleep(5)
                     return redirect('homei')
-                if user.role == 'agrics_officer':
-                    return redirect('index')
-            else:
-                logger.debug("Authentication failed")
-                msg = 'Authentication failed due invalid password or username'
+               
+                elif user.role == 'agrics_officer':
+                 return redirect('index')
+                
+                else:
+                    logger.debug("Authentication failed")
+                    msg = 'Authentication failed due invalid password or username'
         else:
             msg = 'Error validating the form'
 

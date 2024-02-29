@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicant Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a.back-button {
+            display: block;
+            text-align: center;
+            margin-top: 28px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 19px;
+            cursor: pointer;
+        }
+
+        a.back-button:hover {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Applicant Details</h1>
+    <h2>Personal Information:</h2>
+    <table>
+        <tr>
+            <th>Surname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Nationality</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Marital Status</th>
+            
+            
+        </tr>
+        <tr>
+            <td>{{ applicant.Surname }}</td>
+            <td>{{ applicant.First_name }}</td>
+            <td>{{ applicant.last_name }}</td>
+            <td>{{ applicant.phone_number }}</td>
+            <td>{{ applicant.nationality }}</td>
+            <td>{{ applicant.email }}</td>
+            <td>{{ applicant.Gender }}</td>
+            <td>{{ applicant.marital_status }}</td>
+           
+        </tr>
+    </table>
+    
+    <h2>Qualification Information:</h2>
+    {% if update_forms %}
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Education</th>
+            
+           
+            <th>cv</th>
+        </tr>
+        {% for update_form in update_forms %}
+        <tr>
+            <td>{{ update_form.title }}</td>
+            <td>{{ update_form.Education }}</td>
+            
+            <td>{{ update_form.cv}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No qualification information available for this applicant.</p>
+    {% endif %}
+    <h2>Referee Information:</h2>
+{% if referee %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Nationality</th>
+        <!-- Add other referee fields as needed -->
+    </tr>
+    <tr>
+        <td>{{ referee.referee_name }}</td>
+        <td>{{ referee.referee_email }}</td>
+        <td>{{ referee.phone_number }}</td>
+        <td>{{ referee.nationality }}</td>
+        <!-- Render other referee fields as needed -->
+    </tr>
+</table>
+{% else %}
+    <p>No referee information available for this applicant.</p>
+{% endif %}
+<a class="back-button" href="{% url 'view_applicant' %}">Go Back</a>
+</body>
+</html>

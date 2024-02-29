@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Units</title>
+</head>
+<body>
+    <h1>Select Your Units for the Semester</h1>
+    <form method="post">
+        <form method="post">
+            {% csrf_token %}
+            <h2>Units for {{request.user.username}} </h2>
+            {% for unit in units %}
+                <input type="checkbox" name="selected_units" value="{{ unit.id }}"> {{ unit.name }}<br>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+        
+   
+    </form>
+</body>
+</html>

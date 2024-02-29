@@ -1,0 +1,1 @@
+print("omina kevin malasa everything is under God contoll...,",end= "nwoory no less/no more")

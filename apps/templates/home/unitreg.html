@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Registration</title>
+</head>
+<body>
+    <h1>Unit Registration</h1>
+    <p>Below are the units available for registration:</p>
+    
+        {% for unit in units %}
+            <li>{{ unit.name }} - {{ unit.code }}</li>
+        {% endfor %}
+    
+    
+</body>
+</html>
+{{title}}
+<th>courses</th>
+{%for query in queryset%}
+<td>{{query.name}}
+<td>{{query.code}}</td>
+{%endfor%}

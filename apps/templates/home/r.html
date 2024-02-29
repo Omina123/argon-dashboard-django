@@ -1,0 +1,118 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+  <!-- Link Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for login page */
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 30px;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .submit-btn {
+      width: 100%;
+    }
+    /* Progress bar styles */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px; /* Increased height */
+      background-color: #28a745; /* Green progress bar color */
+      z-index: 9999; /* Make sure it's on top */
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background-color: #28a745; /* Green progress bar color */
+    }
+    /* Notification styles */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745; /* Green notification background color */
+      color: #fff; /* White notification text color */
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: none; /* Initially hidden */
+      z-index: 9999; /* Make sure it's on top */
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="text-center">Login</h5>
+    </div>
+    <div class="card-body">
+      {% if msg %}
+        <div class="alert alert-danger" role="alert">
+          {{ msg }}
+        </div>
+      {% endif %}  
+      <form method="POST" id="login-form">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary submit-btn mt-3">Done</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Progress bar container -->
+<div class="progress-container">
+  <div class="progress-bar"></div>
+</div>
+<!-- Notification container -->
+<div class="notification" id="notification"> Hello!. {{request.user.username}}  Application submitted successfully!</div>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+<script>
+  // Wait for the document to be ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // Listen for form submission
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      // Prevent the default form submission
+      event.preventDefault();
+      // Show progress bar
+      var progressBar = document.querySelector('.progress-bar');
+      var width = 0;
+      var intervalId = setInterval(function() {
+        width += 1;
+        progressBar.style.width = width + '%';
+        if (width >= 100) {
+          // If progress bar reaches 100%, show notification and redirect to home page after 10 seconds
+          clearInterval(intervalId);
+          document.getElementById('notification').style.display = 'block'; // Show notification
+          setTimeout(function() {
+            window.location.href = '/'; // Redirect to home page
+          }, 10000); // 10 seconds
+        }
+      }, 100); // Update every 100 milliseconds
+      // Submit the form after progress bar animation completes
+      setTimeout(function() {
+        document.getElementById('login-form').submit();
+      }, 11000); // Submit after 11 seconds
+    });
+  });
+</script>
+{% endblock javascripts %}

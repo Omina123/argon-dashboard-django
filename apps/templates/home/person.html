@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Details</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Style for the navigation bar */
+        .navbar-custom {
+            background-color: green; /* Dark background color */
+            padding: 15px 0; /* Padding for the navbar */
+        }
+
+        .navbar-brand-custom {
+            color: #ffffff; /* White color for the navbar brand */
+            font-weight: bold; /* Bold font weight */
+        }
+
+        .navbar-nav-custom .nav-link {
+            color: #ffffff; /* White color for the nav links */
+        }
+
+        /* Style for the form */
+        .form-container {
+            max-width: 500px; /* Adjust the maximum width of the form container */
+            margin: 0 auto; /* Center the form horizontally */
+            padding: 20px;
+            background-color: #f8f9fa; /* Background color for the form container */
+            border-radius: 10px; /* Rounded corners for the form container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect for the form container */
+        }
+
+        /* Style for the submit button */
+        .submit-btn {
+            width: 100%; /* Make the button width 100% of its container */
+        }
+
+        /* Style for the sticky footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40; /* Dark background color */
+            color: #ffffff; /* White color for the text */
+            padding: 15px 0; /* Padding for the footer */
+            text-align: center; /* Center align the text */
+        }
+
+        /* Style for the logo image */
+        #logo-img {
+            max-width: 50px; /* Adjust the maximum width of the logo */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Add some space between the logo and text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom"> <!-- Apply custom styles to the navbar -->
+            <a class="navbar-brand navbar-brand-custom" href="#">
+                <img id="logo-img" src="static/assets/img/theme/react.jpg/" alt="Logo">Your Logo
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav navbar-nav-custom ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Form -->
+        <div class="mt-5 form-container"> <!-- Apply custom styles to the form container -->
+            <form method="post">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+                {{ form|crispy }}  <!-- Displaying the form fields -->
+                <input type="submit" value="Next" class="btn btn-primary submit-btn">
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            &copy; 2024 Job Application Platform
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

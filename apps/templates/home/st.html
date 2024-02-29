@@ -28,8 +28,8 @@
     <div class="row">
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white" id="greeting">
-          
         </h1>
+        
         <ul class="navbar-nav align-items-center ml-auto ml-md-0 ">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,6 +53,10 @@
                 <i class="ni ni-ambulance"></i>
                 <span>History </span>
               </a>
+              <a href="/" class="dropdown-item">
+                <i class="ni ni-building"></i>
+                <span>Home </span>
+              </a>
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'logout' %}" style="display: inline;">
                 {% csrf_token %}
@@ -61,6 +65,7 @@
                   <span>Logout</span>
                 </button>
               </form>
+            
             </div>
           </li>
         </ul>
@@ -85,18 +90,18 @@
     // Define the greeting message based on the time of day
     var greeting;
     if (hour >= 5 && hour < 12) {
-      greeting = "Good morning";
-    } else if (hour >= 12 && hour < 18) {
-      greeting = "Good afternoon";
+      greeting = "Good Morning";
+    } else if (hour >= 12 && hour<16) {
+      greeting = "Good Afternoon";
     } else {
-      greeting = "Good evening";
+      greeting = "Good Evening";
     }
 
     // Get the greeting element
     var greetingElement = document.getElementById("greeting");
 
     // Update the greeting message
-    greetingElement.innerHTML = greeting + ", {{ request.user.username|title }}{{ request.user.first_name|title }}.<p>{{ welcome }}</p>";
+    greetingElement.innerHTML = greeting + ", {{ request.user.username|title}} {{ request.user.first_name|title }}.<p>{{ welcome }}</p>";
 
     // JavaScript to change the background image
     // Array of background image URLs

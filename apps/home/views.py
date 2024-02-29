@@ -8,12 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+import time
 # def home(request):
 #     context = {'title': 'title'}
 #     return render(request, 'home/home.html')
 def home(request):
     context = {'segment': 'index'}
-
+    time.sleep(10)
     html_template = loader.get_template('home/home.html')
     return HttpResponse(html_template.render(context, request))
 def about(request):

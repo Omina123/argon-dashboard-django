@@ -102,7 +102,7 @@
 
         button {
             background-color: #007BFF;
-            color: #white;
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -132,6 +132,9 @@
     <div class="display_table">
         <table class='table'>
             <thead>
+                <tr style="text-align: center;color: blue;">
+                    {{ title }}
+                </tr>
                 <tr>
                     <th>NUMBER OF RECOMMENDATION</th>
                     <th> Observerd Symptom</th>
@@ -143,8 +146,9 @@
                 </tr>
             </thead>
            
-          
+            {% if queryset %}
             {% for instance in queryset %}
+           
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ instance.symptoms }}</td>
@@ -163,8 +167,16 @@
                     </div>
                 </td>
             </tr>
-            
             {% endfor %}
+            {% else %}
+            <p>  recommendations are not available</p>
+            <tr>
+                <td colspan="5" style="text-align:center;">No RECOMMENDATION yet</td>
+            </tr>
+            <script>
+                alert("No recommendations available yet.");
+            </script>
+            {% endif %}
             <a class="back-button" href="{% url 'homei' %}"><< Go Back</a>
         </table>
     </div>

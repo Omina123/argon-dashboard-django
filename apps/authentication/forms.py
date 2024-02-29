@@ -112,7 +112,7 @@ class SignUpForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email',  'first_name', 'last_name')
+        fields = ('username', 'email',  'first_name', 'last_name','role')
 
     def clean_password2(self):
         # Check that the two password entries match

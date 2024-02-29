@@ -1,0 +1,65 @@
+
+
+
+{% extends 'layouts/base-fullscreen.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+  <!-- Link Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for login page */
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 30px;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .submit-btn {
+      width: 100%;
+    }
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="text-center">UPLOAD YOUR VACANCY</h5>
+    </div>
+    <div class="card-body">
+      {% if msg %}
+        <div class="alert alert-danger" role="alert">
+          {{ msg }}
+        </div>
+      {% endif %}  
+      <form method="POST">
+        <form method="post" action="{% url 'Job_Application' %}" class="mt-5">
+            {% csrf_token %}
+    
+    
+            {{ form|crispy }}
+    
+            <button type="submit" class="btn btn-primary">Upload</button>
+         
+            
+        </form>
+       
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+{% endblock javascripts %}

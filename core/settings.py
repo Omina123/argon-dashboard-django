@@ -75,7 +75,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+#https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # DATABASES = {
 #     'default': {
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'histo', 
+        'NAME': 'anthaz', 
         #'NAME': 'gts_data',  
         'USER': 'root',  
         'PASSWORD': '',  
