@@ -21,7 +21,7 @@ urlpatterns = [
      path('delete/<int:pk>', delete, name='delete'),
      path('hire/<int:pk>', hire, name='hire'),
             #    path('omina', omina, name='omina'),
-
+path('pdf/<int:pk>', pdf, name='pdf'),
           path('kevo', kevo, name='kevo'),
 
           path('history', history, name='history'),

@@ -9,7 +9,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.contrib import messages
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph
 
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter,A4
 
 # Create your views here.
 from django.shortcuts import render, redirect,HttpResponse
@@ -49,16 +55,13 @@ dataset = [
 ]
 
 # In views.py
-from django.shortcuts import render
-from django.http import HttpResponse
+
 import joblib
 
 # Load the trained model
-model = joblib.load('recommendation_model.joblib')
+#model = joblib.load('recommendation_model.joblib')
 # views.py
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-import joblib
+
 
 # Load the trained model
 model = joblib.load('omina_model.joblib')
@@ -144,7 +147,8 @@ def enter(request):
             recommendations = [get_recommendation(symptoms) for symptoms in symptom_list]
 
             # Save symptoms and recommendations to the database
-            farmer= request.user
+            farmer= request.user.username
+          
             data = []
             for symptom, recommendation in zip(symptom_list, recommendations):
                 AnthraxSymptom.objects.create(farmer=farmer,symptoms=symptoms, recommendation=recommendation)
@@ -246,3 +250,52 @@ def hire (request, pk):
         'querset':querset
     }
     return render(request, 'home/hire.html',context)
+def pdf(request, pk):
+    case_data = AnthraxSymptom.objects.get(id=pk)  # Assuming you want to get the first case from the database
+    
+    # Create a PDF document
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="Anthrax_recomendations.pdf"'
+    doc = SimpleDocTemplate(response, pagesize=letter)
+
+    # Define styles for the PDF content
+    styles = getSampleStyleSheet()
+    custom_style = ParagraphStyle(name='CustomStyle', parent=styles['Normal'])
+    custom_style.spaceBefore = 20
+    custom_style.spaceAfter = 20
+
+    # Create the content for the case report
+    content = [
+        Paragraph("\t\t\t\tFirm: \tMAKONGEN AGRICULTURAL FIRM "),
+                Paragraph("\t\t\tEmail: \t Makongeni@gmail.com "),
+                        Paragraph("\t\t\t\tTell: \t +254 759 975 197 "),
+                        Paragraph("\t\t\t\t Post: \t P.O BOX 2000, Nairobi "),
+                        Paragraph("\t\t\t\t Farmer: {}".format(request.user.username), custom_style),
+                        #Paragraph("\t\t\t\t firstname: {}".format(USER.first_name), custom_style),
+                        
+         
+
+        Paragraph("SYMPTOM: {}".format(case_data.symptoms), custom_style),
+      
+                       Paragraph("\t\t\t\t RECOMMENDATION "),
+
+        Paragraph(" {}".format(case_data.recommendation), custom_style),
+         Paragraph("Farmer signature:   ......................", custom_style),
+        Paragraph("DATE:   ......................", custom_style),
+
+       
+        Paragraph("Hod signature:   ......................", custom_style),
+        Paragraph("DATE:   ......................", custom_style),
+        Paragraph("", custom_style),
+        Paragraph("", custom_style),
+        Paragraph("", custom_style),
+      
+
+
+
+    ]
+
+    # Build the PDF document
+    doc.build(content)
+
+    return response

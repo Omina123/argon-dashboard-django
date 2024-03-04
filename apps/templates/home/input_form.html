@@ -87,9 +87,9 @@
 
     <form id="symptomsForm" method="post" action="{% url 'get_reco' %}" class="mt-5">
         {% csrf_token %}
-       
-        <h1 class="mb-4"> HI.. {{request.user.username}} {{request.user.first_name}}</h1>
-
+        <h1 class="display-2 text-white" id="greeting">
+        </h1>
+    
         <label for="symptoms">Provide experienced Symptoms:</label>
         <input type="text" id="symptomsInput" name="symptoms" required>
         <button type="submit" onclick="showLoading()" class="btn btn-primary">Get Recommendation</button>
@@ -106,7 +106,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        function showLoading() {
+        
+            // JavaScript to update the greeting message based on the time of day
+            window.onload = function() {
+              // Get the current hour
+              var hour = new Date().getHours();
+          
+              // Define the greeting message based on the time of day
+              var greeting;
+              if (hour >= 5 && hour < 12) {
+                greeting = "Good Morning";
+              } else if (hour >= 12 && hour<16) {
+                greeting = "Good Afternoon";
+              } else {
+                greeting = "Good Evening";
+              }
+          
+              // Get the greeting element
+              var greetingElement = document.getElementById("greeting");
+          
+              // Update the greeting message
+              greetingElement.innerHTML = greeting + ", {{ request.user.username|title}} {{ request.user.first_name|title }}.<p>{{ welcome }}</p>";
+            
+        function showLoading() 
             document.getElementById('loading-spinner').style.display = 'block';
         }
     </script>

@@ -33,7 +33,7 @@ predictions = model.predict(test_data['symptoms'])  # Use 'symptoms' as the inpu
 conf_matrix = confusion_matrix(test_labels, predictions)
 
 # Plot the confusion matrix
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(9, 6))
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=['0', '1'], yticklabels=['0', '1'])
 plt.xlabel('Predicted')
 plt.ylabel('True')

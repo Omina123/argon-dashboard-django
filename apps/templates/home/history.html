@@ -136,11 +136,12 @@
                     {{ title }}
                 </tr>
                 <tr>
-                    <th>NUMBER OF RECOMMENDATION</th>
+                    <th>Counter</th>
                     <th> Observerd Symptom</th>
-                    <th>RECOMMENDATION</th>
-                    <th>name</th>
-                    <th>ACTIONS</th>
+                    <th>Recommendation</th>
+                    <th>Farmer</th><th>Email</th>
+                    <th>Actions</th>
+                    
                     
                 
                 </tr>
@@ -153,14 +154,14 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{{ instance.symptoms }}</td>
                 <td>{{ instance.recommendation }}</td>
-                <td>{{ instance.farmer}}</td>
-
+                <td>{{ instance.farmer.username}} {{ instance.farmer.first_name}} {{ instance.farmer.last_name}}</td>
+               ,<td> {{ instance.farmer.email}}</td>
           
                 <td class="dropdown">
                     <button class="btn btn-edit">Actions</button>
                     <div class="dropdown-content">
-                        <a href="#" class="btn btn-edit">Edit</a>
-                        <a href="{% url 'delete' instance.id %}" class="btn btn-danger">Delete</a>
+                        <a class="btn btn-success" href="{% url 'pdf'  instance.pk  %}">Reports  </a>     
+                                           <a href="{% url 'delete' instance.id %}" class="btn btn-danger">Delete</a>
                         
 
 
@@ -169,16 +170,17 @@
             </tr>
             {% endfor %}
             {% else %}
-            <p>  recommendations are not available</p>
+            
             <tr>
-                <td colspan="5" style="text-align:center;">No RECOMMENDATION yet</td>
+                <td colspan="5" style="text-align:center;">NO RECOMMENDATION YET</td>
             </tr>
             <script>
                 alert("No recommendations available yet.");
             </script>
             {% endif %}
-            <a class="back-button" href="{% url 'homei' %}"><< Go Back</a>
+           
         </table>
+        <a class="back-button" href="{% url 'homei' %}">Go Back</a>
     </div>
     
 </body>
